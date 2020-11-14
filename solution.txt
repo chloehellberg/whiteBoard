@@ -1,0 +1,53 @@
+PROBLEM #1
+
+// URLs cannot have spaces. Instead, all spaces in a string are replaced with %20. 
+// Write an algorithm that replaces all spaces in a string with %20.
+
+// You may not use the replace() method or regular expressions to solve this problem. 
+// Solve the problem with and without recursion.
+
+// Example
+// Input: "Jasmine Ann Jones"
+
+// Output: "Jasmine%20Ann%20Jones"
+
+
+// Without Recursion
+
+const sentence = "Jasmine Ann Jones"
+
+// split(" ") join("%20")
+
+const replaceSpace = (sentence) => {
+  const sentenceArray = sentence.split(" ");
+  return sentenceArray.join("%20");
+}
+
+console.log(replaceSpace("Jasmine Ann Jones"));
+
+// "Jasmine%20Ann%20Jones"
+
+
+
+
+// WITH RECURSION
+
+const replaceSpaceRec = (sentence, array=[], count =1) => {
+  if (sentence != "") {
+    return;
+  }
+  if (count === (sentence.length+1)) {
+    return array.join("");
+  } else {
+    if (sentence.charAt(count-1) === " ") {
+      array.push("%20")
+    } else {
+      array.push(sentence.charAt(count-1));
+    }
+    return replaceSpaceRec(sentence, array, count+1);
+  }
+}
+
+replaceSpaceRec(sentence);
+
+// "Jasmine%20Ann%20Jones"
